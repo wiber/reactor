@@ -22,10 +22,12 @@ Meteor.startup ->
           alt: 'Fork me on GitHub'
         }
       ]
-      section {id: 'todoapp'}, [
+      section
+        id: 'todoapp'
+      , [
         header {id: 'header'}, [
           h1 'todos'
-          input {
+          input
             id: 'new-todo'
             type: 'text'
             placeholder: 'What needs to be done?'
@@ -40,7 +42,6 @@ Meteor.startup ->
                 @val('')
                 false # In IE, don't set focus on the utton(crazy!)
                 # <http://stackoverflow.com/questions/12325066/button-click-event-fires-when-pressing-enter-key-in-different-input-no-forms>
-          }
         ]
         div bind ->
           if tasks.length() == 0
@@ -85,7 +86,7 @@ Meteor.startup ->
                           TaskDB.update task._id, {$set: {isCompleted: @is(':checked')}}
                       }
                       label {
-                        dblclick: ->
+                        click: ->
                           TaskDB.update task._id, {$set: {isEditing: true}}
                           editBox.focus()
                       }, "#{task.title}"
